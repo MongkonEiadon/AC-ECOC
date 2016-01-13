@@ -14,7 +14,12 @@ for i = 1:size(k,1)
            m2idx = (m(:,end) == k(j));
            m1 = m(m1idx, :);
            m2 = m(m2idx, :);
-           
+          
+           %print out
+           ['class '   num2str(i)  ' : '  num2str(j)]
+           if(i == 2 && j == 4)
+               stop = 1;
+           end
            [Acc(i,j), ~] = kfoldCrossAccuracy(m1, m2, nfold);
        end
    end
