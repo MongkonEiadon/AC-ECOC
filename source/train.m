@@ -1,12 +1,12 @@
 
-m =segment;
+m = SoyBean.data;
 
 % acc = kfoldCrossAccuracies(m, 10);
 % 
 % p = prim(acc);
 
-d = prim(segmentResult);
-
+d = prim(soybeanResult);
+ecoc = ecocgen(d, 19);
 X = m(:, 1:end);
 Y = m(:, end);
 
@@ -20,7 +20,7 @@ total = sum(sum(a)) / 2
 
 
 template = templateSVM('KernelFunction', 'rbf',  'KernelScale', 'auto', 'BoxConstraint', 1, 'Standardize', 1);
-trainedClassifier = fitcecoc(X, Y, 'Learners', template, 'Coding', ecoc);
+trainedClassifier = fitcecoc(X, Y, 'Learners', template, 'Coding', 'sparse');
 partModel = crossval(trainedClassifier, 'KFold', 10);
 Accuracy = 1 - kfoldLoss(partModel, 'LossFun', 'ClassifError');
 [validationPredictions, validationScores] = kfoldPredict(partModel);

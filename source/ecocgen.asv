@@ -6,45 +6,41 @@ rem = d;
 
 
    
-   [sel dt] = select(d);
-   n = [1:k];
+   [sel dt] = select(dt);
     %remove selector
-   rem = buildecoc(rem, transpose(n));
+   rem = buildecoc(rem, transpose([1:k]));
    
     
 %got left
 
 
 function [dt] = buildecoc(dt, node)
-    if length(node) > 1
-        
-        disp('split');
-        disp(transpose(node));
-        ix = (ismember(dt(:, 1), node) | ismember(dt(:,2),node));
-
-        [s dt] = select(dt(ix,:));
-
-        if size(dt,1) > 0
-            l = transpose( takechild(dt, s(:,1)));
-            r = transpose( takechild(dt, s(:,2)));
-        else
-            l = s(:,1);
-            r = s(:,2);
-        end
-        
-        disp('left');disp(transpose(l));
-        disp('right');disp(transpose(r));
-        i = zeros(k,1);
-
-        i(l,:) = 1;
-        i(r,:) = -1;
-
-        Ecoc = [Ecoc, i]
-
-        buildecoc(dt, r);
-        buildecoc(dt, l);
-  
+    
+    disp(dt);
+    
+    [s dt] = select(dt);
+    if size(dt,1) > 0
+        l = transpose( takechild(dt, s(:,1)));
+        r = transpose( takechild(dt, s(:,2)));
+    else
+        l = s(:,1);
+        r = s(:,2);
     end
+    i = zeros(k,1);
+    
+    i(l,:) = 1;
+    i(r,:) = -1;
+    
+    Ecoc = [Ecoc, i];
+    
+    while (size(dt,1) > 1)
+        ix = (ismember(dt(:, 1), l) | ismember(dt(:,2),l));
+        dt = buildecoc(dt(ix, :));
+        
+    end
+    
+  
+
 end
 
 function [select dt] = select(dt)
