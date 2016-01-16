@@ -16,7 +16,7 @@ for i = 1:size(k,1)
            m2 = m(m2idx, :);
           
            %print out
-           ['class '   num2str(i)  ' : '  num2str(j)]
+           disp(['class '   num2str(i)  ' : '  num2str(j)]);
            if(i == 2 && j == 4)
                stop = 1;
            end
