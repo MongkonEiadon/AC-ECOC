@@ -1,6 +1,6 @@
 
 
-function [ acc, confumat ] = kfoldCrossAccuracy(m1, m2, nfold)
+function [ acc, err, confumat ] = kfoldCrossAccuracy(m1, m2, nfold)
 if nargin < 3 nfold = 10; end;
 
 data = [m1; m2];
@@ -32,6 +32,7 @@ for i=1:size(x,1)
 end
 
 acc = cp.CorrectRate;
+err = cp.ErrorRate;
 confumat = cp.CountingMatrix;
 
 end

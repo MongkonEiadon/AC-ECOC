@@ -8,7 +8,7 @@ function [full] = prim(A)
 % after a pause, hit any key.
 
 [n,n] = size(A);                           % The matrix is n by n, where n = # nodes.
-A, n, %pause,
+A, n; %pause,
 
 % if norm(A-A','fro') ~= 0 ,                 % If adjacency matrix is not symmetric,
 %   disp(' Error:  Adjacency matrix must be symmetric ') % print error message and quit.
@@ -20,8 +20,8 @@ A, n, %pause,
 intree = [1];  number_in_tree = 1;  number_of_edges = 0;
 notintree = [2:n]';  number_notin_tree = n-1;
 
-in = intree(1:number_in_tree),               % Print which nodes are in tree and which 
-out = notintree(1:number_notin_tree),% pause, % are not.
+in = intree(1:number_in_tree);,               % Print which nodes are in tree and which 
+out = notintree(1:number_notin_tree);,% pause, % are not.
 
 % Iterate until all n nodes are in tree.
 
@@ -64,6 +64,6 @@ disp(' Edges in minimum spanning tree and their costs: ')
 % spanning.LeftNode = mst(:,1);
 % spanning.RightNode = mst(:,2);
 % spanning.Weight = costs;
-full = [mst  costs]                                 % Print out edges in minimum spanning tree.
-cost = sum(costs)
+full = [mst  costs]      ;                           % Print out edges in minimum spanning tree.
+cost = sum(costs);
 

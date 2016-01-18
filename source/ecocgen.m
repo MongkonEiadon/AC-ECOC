@@ -18,8 +18,6 @@ rem = d;
 function [dt] = buildecoc(dt, node)
     if length(node) > 1
         
-        disp('split');
-        disp(transpose(node));
         ix = (ismember(dt(:, 1), node) | ismember(dt(:,2),node));
 
         [s dt] = select(dt(ix,:));
@@ -32,8 +30,6 @@ function [dt] = buildecoc(dt, node)
             r = s(:,2);
         end
         
-        disp('left');disp(transpose(l));
-        disp('right');disp(transpose(r));
         i = zeros(k,1);
 
         i(l,:) = 1;
