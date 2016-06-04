@@ -1,0 +1,9 @@
+Solution of the sparse autoencoder problem: http://nlp.stanford.edu/~socherr/sparseAutoencoder_2011new.pdf
+
+Note that the formula for the backpropagation update step of the sparsity term in the objective function is wrong in the pdf. The correct formula is implemented here in code.
+
+
+
+
+
+
